@@ -1,10 +1,13 @@
 import React from 'react';
 import './TrackList.css';
 
-const Tracklist = () => {
+const Tracklist = (searchResults) => {
   return (
     <div className="TrackList">
-    {/* You will add a map method that renders a set of Track components */}
+      {searchResults && searchResults.map((track) => {
+        <Track key={track.id} title={track.title} artist={track.artist} album={track.album}/>
+        })
+      }
     </div>
   )
 }
