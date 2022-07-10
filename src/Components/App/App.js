@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import SearchBar from '../SearchBar/SearchBar.js'
 import Playlist from '../Playlist/Playlist.js'
 import SearchResults from '../SearchResults/SearchResults.js'

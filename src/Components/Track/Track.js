@@ -1,7 +1,7 @@
 import React from 'react';
 import './Track.css';
 
-const Track = (title, artist, album) => {
+const Track = (props) => {
   let isRemoval = true;
 
   const renderAction = (isRemoval) => {
@@ -15,8 +15,8 @@ const Track = (title, artist, album) => {
   return (
     <div className="Track">
       <div className="Track-information">
-        <h3> {title} </h3>
-        <p> {artist} | {album} </p>
+        <h3> {props.title} </h3>
+        <p> {props.artist} | {props.album} </p>
       </div>
       {renderAction(isRemoval)}
     </div>
