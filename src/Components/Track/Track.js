@@ -4,7 +4,7 @@ import './Track.css';
 const Track = (props) => {
   const renderAction = (isRemoval) => {
     return (
-      <button onClick={!isRemoval ? () => { props.onAdd(props.track) } : console.log('test')} className="Track-action">
+      <button onClick={!isRemoval ? () => { props.onAdd(props.track) } : () => { props.onRemove(props.track) }} className="Track-action">
         {isRemoval ? '-' : '+'}
       </button>
     )
