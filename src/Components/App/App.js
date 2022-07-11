@@ -9,7 +9,7 @@ function App() {
   const searchResultsSample = [
     {
       id: 1,
-      title: 'LA to Berlin',
+      title: 'SF to Berlin',
       artist: 'Spencer Brown',
       album: 'Stream of Consciousness'
     }, 
@@ -23,11 +23,43 @@ function App() {
       id: 3,
       title: 'Bleach',
       artist: 'BROCKHAMPTON',
-      album: 'Saturation III'
+      album: 'SATURATION III'
     }
   ];
 
+  const playlistSample = [
+    {
+      id: 4,
+      title: 'Green Tea (RAC Remix)',
+      artist: 'Giraffage',
+      album: 'Too Real Remixes'
+    }, 
+    {
+      id: 5,
+      title: 'Take it Back',
+      artist: 'Logic',
+      album: 'Everybody'
+    },
+    {
+      id: 6,
+      title: 'Platforms',
+      artist: 'M.I.A.',
+      album: 'AIM'
+    }
+  ];
+
+  const [playlistTitle, setPlaylistTitle] = useState('Test Playlist');
   const [searchResults, setSearchResults] = useState(searchResultsSample);
+  const [playlistTracks, setPlaylistTracks] = useState(playlistSample);
+
+  const addTrack = (track) => {
+    for (let i = 0; i < playlistTracks.length; i++) {
+      if (track.id === playlistTracks[i].id) {
+        return
+      }
+    }
+    setPlaylistTracks([...playlistTracks, track]);
+  }
 
   return (
     <div>
@@ -35,8 +67,8 @@ function App() {
       <div className="App">
         <SearchBar/>
         <div className="App-playlist">
-          <SearchResults searchResults={searchResults}/>
-          <Playlist/>
+          <SearchResults searchResults={searchResults} onAdd={addTrack}/>
+          <Playlist playlistTracks={playlistTracks} playlistTitle={playlistTitle}/>
         </div>
       </div>
     </div>

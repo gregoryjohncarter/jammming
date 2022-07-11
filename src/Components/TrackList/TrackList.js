@@ -7,10 +7,14 @@ const Tracklist = (props) => {
     <div className="TrackList">
       {props.searchResults && props.searchResults.map((track) => {
         return (
-          <Track key={track.id} title={track.title} artist={track.artist} album={track.album}/>
+          <Track key={track.id} title={track.title} artist={track.artist} album={track.album} onAdd={props.onAdd} track={track} isRemoval={props.isRemoval}/>
         )
-        })
-      }
+      })}
+      {props.playlistTracks && props.playlistTracks.map((track) => {
+        return (
+          <Track key={track.id} title={track.title} artist={track.artist} album={track.album} track={track}/>
+        )
+      })}
     </div>
   )
 }

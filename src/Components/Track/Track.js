@@ -2,14 +2,12 @@ import React from 'react';
 import './Track.css';
 
 const Track = (props) => {
-  let isRemoval = true;
-
   const renderAction = (isRemoval) => {
     return (
-      <button className="Track-action">
+      <button onClick={!isRemoval ? () => { props.onAdd(props.track) } : console.log('test')} className="Track-action">
         {isRemoval ? '-' : '+'}
       </button>
-      )
+    )
   }
   
   return (
@@ -18,7 +16,7 @@ const Track = (props) => {
         <h3> {props.title} </h3>
         <p> {props.artist} | {props.album} </p>
       </div>
-      {renderAction(isRemoval)}
+      {renderAction(props.isRemoval)}
     </div>
   )
 }
