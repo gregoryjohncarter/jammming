@@ -4,6 +4,7 @@ import Playlist from '../Playlist/Playlist.js'
 import SearchResults from '../SearchResults/SearchResults.js'
 import './App.css';
 import { useState } from 'react';
+import Spotify from '../../util/Spotify.js';
 
 function App() {
   const searchResultsSample = [
