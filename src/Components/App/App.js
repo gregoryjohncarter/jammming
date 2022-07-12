@@ -1,4 +1,3 @@
-// import logo from './logo.svg';
 import SearchBar from '../SearchBar/SearchBar.js'
 import Playlist from '../Playlist/Playlist.js'
 import SearchResults from '../SearchResults/SearchResults.js'
@@ -7,51 +6,9 @@ import { useState } from 'react';
 import Spotify from '../../util/Spotify.js';
 
 function App() {
-  const searchResultsSample = [
-    {
-      id: 1,
-      title: 'SF to Berlin',
-      artist: 'Spencer Brown',
-      album: 'Stream of Consciousness'
-    }, 
-    {
-      id: 2,
-      title: 'More Than Enough',
-      artist: 'Alina Baraz',
-      album: 'It Was Divine'
-    },
-    {
-      id: 3,
-      title: 'Bleach',
-      artist: 'BROCKHAMPTON',
-      album: 'SATURATION III'
-    }
-  ];
-
-  const playlistSample = [
-    {
-      id: 4,
-      title: 'Green Tea (RAC Remix)',
-      artist: 'Giraffage',
-      album: 'Too Real Remixes'
-    }, 
-    {
-      id: 5,
-      title: 'Take it Back',
-      artist: 'Logic',
-      album: 'Everybody'
-    },
-    {
-      id: 6,
-      title: 'Platforms',
-      artist: 'M.I.A.',
-      album: 'AIM'
-    }
-  ];
-
   const [playlistTitle, setPlaylistTitle] = useState('New Playlist');
-  const [searchResults, setSearchResults] = useState(searchResultsSample);
-  const [playlistTracks, setPlaylistTracks] = useState(playlistSample);
+  const [searchResults, setSearchResults] = useState([]);
+  const [playlistTracks, setPlaylistTracks] = useState([]);
   const [searchInput, setSearchInput] = useState('');
 
   const addTrack = (track) => {
@@ -73,12 +30,17 @@ function App() {
     setPlaylistTitle(name);
   }
 
-  const savePlaylist = (uriArr) => {
-    let trackURIs = [];
+  const savePlaylist = () => {
+    let uriArr = [];
 
     for (let i = 0; i < playlistTracks.length; i++) {
-      trackURIs.push(playlistTracks[i].uri);
+      uriArr.push(playlistTracks[i].uri);
     }
+
+    Spotify.savePlaylist(playlistTitle, uriArr).then(() => {
+      setPlaylistTitle('New Playlist');
+      setPlaylistTracks([]);
+    });
   }
 
   const searchValue = (query) => {
