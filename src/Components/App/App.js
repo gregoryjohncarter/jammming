@@ -83,11 +83,12 @@ function App() {
 
   const searchValue = (query) => {
     setSearchInput(query);
-    console.log(query);
   }
 
   const searchQuery = () => {
-    console.log(searchInput);
+    Spotify.searchSpotify(searchInput).then(newResults => {
+      setSearchResults(newResults);
+    })
   }
 
   return (
