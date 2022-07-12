@@ -48,9 +48,10 @@ function App() {
     }
   ];
 
-  const [playlistTitle, setPlaylistTitle] = useState('Test Playlist');
+  const [playlistTitle, setPlaylistTitle] = useState('New Playlist');
   const [searchResults, setSearchResults] = useState(searchResultsSample);
   const [playlistTracks, setPlaylistTracks] = useState(playlistSample);
+  const [searchInput, setSearchInput] = useState('');
 
   const addTrack = (track) => {
     for (let i = 0; i < playlistTracks.length; i++) {
@@ -67,14 +68,35 @@ function App() {
     }));
   }
 
+  const updatePlaylistName = (name) => {
+    setPlaylistTitle(name);
+  }
+
+  const savePlaylist = (uriArr) => {
+    let trackURIs = [];
+
+    for (let i = 0; i < playlistTracks.length; i++) {
+      trackURIs.push(playlistTracks[i].uri);
+    }
+  }
+
+  const searchValue = (query) => {
+    setSearchInput(query);
+    console.log(query);
+  }
+
+  const searchQuery = () => {
+    console.log(searchInput);
+  }
+
   return (
     <div>
       <h1>Ja<span className="highlight">mmm</span>ing</h1>
       <div className="App">
-        <SearchBar/>
+        <SearchBar onSearch={searchQuery} onChange={searchValue}/>
         <div className="App-playlist">
           <SearchResults searchResults={searchResults} onAdd={addTrack}/>
-          <Playlist playlistTracks={playlistTracks} playlistTitle={playlistTitle} onRemove={removeTrack}/>
+          <Playlist playlistTracks={playlistTracks} playlistTitle={playlistTitle} onRemove={removeTrack} onNameChange={updatePlaylistName} onSave={savePlaylist}/>
         </div>
       </div>
     </div>
