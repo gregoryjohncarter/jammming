@@ -9,7 +9,7 @@ const Playlist = (props) => {
 
   return (
     <div className="Playlist">
-      <input defaultValue={"New Playlist"} onChange={handleNameChange}/>
+      <input value={props.playlistTitle} onChange={handleNameChange}/>
       <TrackList playlistTracks={props.playlistTracks} onRemove={props.onRemove}/>
       <button className="Playlist-save" onClick={props.onSave}>SAVE TO SPOTIFY</button>
     </div>
