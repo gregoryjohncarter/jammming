@@ -31,13 +31,9 @@ function App() {
   }
 
   const savePlaylist = () => {
-    let uriArr = [];
+    const trackUris = playlistTracks.map(track => track.uri);
 
-    for (let i = 0; i < playlistTracks.length; i++) {
-      uriArr.push(playlistTracks[i].uri);
-    }
-
-    Spotify.savePlaylist(playlistTitle, uriArr).then(() => {
+    Spotify.savePlaylist(playlistTitle, trackUris).then(() => {
       setPlaylistTitle('New Playlist');
       setPlaylistTracks([]);
     });
